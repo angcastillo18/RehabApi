@@ -14,7 +14,8 @@ function getSesions (req,res){
             console.log(sesions);
             //Si es que las sesiones no existe
             if(!sesions) return res.status(404).send({message:`No existen usuarios`})
-            res.status(200).send({sesions})
+            //res.status(200).send({sesions})
+            res.status(200).send(sesions)
         })
       })
 }
@@ -53,7 +54,8 @@ function registerSesion(req,res){
         sesion.save((err,sesionStored)=>{
             if(err) res.status(500).send({message:`Error al salvar en la base de datos: ${err}`})
             //si es que no hay error...
-            res.status(200).send({sesion:sesionStored})
+            //res.status(200).send({sesion:sesionStored})
+            res.status(200).send(sesionStored)
         })
         
     })

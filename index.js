@@ -22,5 +22,5 @@ mongoose.connect(config.db,(err,res)=>{
         console.log(`Example app listening on port ${config.port}!`);
     })
 })
-
+//SE MODIFICO EN EL PACKAGE JSON: start:'node index.js' de heroku , por nodemon index.js.para que corra en local
 

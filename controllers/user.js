@@ -9,11 +9,12 @@ function getUser (req,res){
     User.findById(userId,(err,user)=>{
       if(err) return res.status(500).send({message:`Error al realizar la petición: ${err}`})
       //Si es que el usuario no existe
-      if(!user) return res.status(404).send({message:`El producto no existe`})
+      if(!user) return res.status(404).send({message:`El usuario no existe`})
 
       //si si existe y lo encuentra
       //clave y valor en el send({clave:valor}) si son los mismo se simplifica en uno solo
-      res.status(200).send({user})
+      //res.status(200).send({user})
+      res.status(200).send(user)
     })
 }
 //traer todos los usuarios
@@ -23,14 +24,14 @@ function getUsers (req,res){
         //Si es que el usuario no existe
         if(!users) return res.status(404).send({message:`No existen usuarios`})
         //si todo va bien
-        res.status(200).send({users})
-  
+        //res.status(200).send({users})
+        res.status(200).send(users)
       })
 }
 //registrar usuarios POST
 function registerUser(req,res){
-    console.log('POST/api/user')
-    console.log(req.body)
+    //console.log('POST/api/user')
+    //console.log(req.body)
 
     //buscar al usuario por su correo
     User.findOne({'email':req.body.email},(err,user)=>{
@@ -56,7 +57,8 @@ function registerUser(req,res){
             user.save((err,userStored)=>{
                 if(err) res.status(500).send({message:`Error al salvar en la base de datos: ${err}`})
                 //si es que no hay error...
-                res.status(200).send({user:userStored})
+                //res.status(200).send({user:userStored})
+                res.status(200).send(userStored)
             })
         }
     })
@@ -91,7 +93,8 @@ function updateUser (req,res){
   User.findByIdAndUpdate(userId,update,(err,userUpdated)=>{
       if(err) res.status(500).send({message:`Error al actualizar al usuario: ${err}`})
       
-      res.status(200).send({user: userUpdated})
+      //res.status(200).send({user: userUpdated})
+      res.status(200).send(userUpdated)
   })
 }
 function deleteUser (req,res){
