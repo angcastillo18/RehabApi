@@ -10,10 +10,31 @@ function getSesions (req,res){
     Sesion.find({},(err,sesions)=>{
         if(err) return res.status(500).send({message:`Error al realizar la petición: ${err}`})
         //si todo va bien
+        //metodo populate para hacer el join de los usuarios dentro de las sesiones
         User.populate(sesions,{path:'user'},function(err,sesions){
             console.log(sesions);
             //Si es que las sesiones no existe
             if(!sesions) return res.status(404).send({message:`No existen usuarios`})
+            //res.status(200).send({sesions})
+            res.status(200).send(sesions)
+        })
+      })
+}
+//traer todas las sesiones de un solo usuario
+function getSesion (req,res){
+    let userId=req.params.userId
+    var o_id = new ObjectId(userId);
+    console.log(o_id)
+    Sesion.find({'user':o_id},(err,sesions)=>{
+        if(err) return res.status(500).send({message:`Error al realizar la petición: ${err}`})
+        //si la consulta me trae un objeto vacio
+        if(Object.keys(sesions).length === 0) return res.status(403).send({message:`No se encontro un usuario`})
+        //si todo va bien
+        //metodo populate para hacer el join de los usuarios dentro de las sesiones
+        User.populate(sesions,{path:'user'},function(err,sesions){
+            console.log(sesions);
+            //Si es que las sesiones no existe
+            if(!sesions) return res.status(404).send({message:`No existe el usuario`})
             //res.status(200).send({sesions})
             res.status(200).send(sesions)
         })
@@ -27,7 +48,7 @@ function registerSesion(req,res){
     //
     var id = req.body.user;       
     var o_id = new ObjectId(id);
-    var sesionNro=1;
+    //var sesionNro=1;
     //db.test.find({_id:o_id})
     let sesion=new Sesion()
             //almacenar en la base de datos 
@@ -82,5 +103,6 @@ function registerSesion(req,res){
 }
 module.exports={
     getSesions,
+    getSesion,
     registerSesion
 }

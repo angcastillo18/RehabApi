@@ -22,8 +22,11 @@ const sesionCtrl=require('../controllers/sesion')
   api.delete('/user/:userId', userCtrl.deleteUser)
 
 //Metodos del controllers SESION--RUTAS DIRECCIONAMIENTO
+//traer todos las sesiones
   api.get('/sesion', sesionCtrl.getSesions)
-
+//traer las sesiones de un determinado usuario
+  api.get('/sesion/:userId', sesionCtrl.getSesion)
+//registrar una sesion
   api.post('/sesion',sesionCtrl.registerSesion)
 
   module.exports=api
