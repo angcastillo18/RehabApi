@@ -12,7 +12,8 @@ const SesionSchema=Schema({
     max:Number,
     min:Number,
     totalHits:Number,
-    date: { type: Date, default: Date.now },
+    //date: { type: Date, default: Date.now },
+    date:String,
     totalFlex:Number,
     score:Number
 })

@@ -12,7 +12,8 @@ const UserSchema=Schema({
     email:{type:String,unique:true,lowercase:true},
     //se le puede añadir a pasword , select:false, para que no se envia el password cuando se haga un get de usuario
     password:String,
-    date: { type: Date, default: Date.now },
+    //date: { type: Date, default: Date.now },
+    date:String,
     gender:{type:String,enum:['male','female']},
     injury: String
 })

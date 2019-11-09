@@ -56,7 +56,7 @@ function registerSesion(req,res){
             sesion.max=req.body.max
             sesion.min=req.body.min
             sesion.totalHits=req.body.totalHits
-            //sesion.date=req.body.date
+            sesion.date=new Date().toLocaleString('en-AU', { timeZone: 'America/Lima' })
             sesion.totalFlex=req.body.totalFlex
             sesion.score=req.body.score
     //

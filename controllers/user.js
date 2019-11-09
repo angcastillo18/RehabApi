@@ -49,7 +49,7 @@ function registerUser(req,res){
             user.age=req.body.age
             user.email=req.body.email
             user.password=req.body.password //bcrypt.hashSync(req.body.password, 10)
-            //user.date=req.body.date
+            user.date=new Date().toLocaleString('en-AU', { timeZone: 'America/Lima' })
             user.gender=req.body.gender
             user.injury=req.body.injury
 
@@ -58,7 +58,7 @@ function registerUser(req,res){
                 if(err) res.status(500).send({message:`Error al salvar en la base de datos: ${err}`})
                 //si es que no hay error...
                 //res.status(200).send({user:userStored})
-                res.status(200).send(userStored)
+                res.status(200).send({message:"Usuario registrado satisfactoriamente"})
             })
         }
     })
@@ -79,7 +79,8 @@ function loginUser(req,res){
             return res.status(400).send({ message: "La contraseña es incorrecta" });
         }
         //email y password hacen match
-        res.status(200).send({ message: "Login exitoso" });
+        
+        res.status(200).send({respuesta:"Login exitoso",userId:user._id});
 
     })
 }
