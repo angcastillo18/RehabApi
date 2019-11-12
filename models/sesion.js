@@ -16,7 +16,7 @@ const SesionSchema=Schema({
     date:String,
     totalFlex:Number,
     score:Number,
-    game:{type:Number,min:1,max:2}
+    gameId:{type:Number,min:1,max:2}
 })
 //exportamos el modelo para que pueda ser accesible por toda la aplicacion, solo es necesario importar
 module.exports=mongoose.model('Sesion',SesionSchema)

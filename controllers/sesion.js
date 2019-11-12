@@ -59,7 +59,7 @@ function registerSesion(req,res){
             sesion.date=new Date().toLocaleString('en-AU', { timeZone: 'America/Lima' })
             sesion.totalFlex=req.body.totalFlex
             sesion.score=req.body.score
-            sesion.game=req.body.game
+            sesion.gameId=req.body.gameId
     //
     Sesion.find({"user":o_id},null,{sort:{nSesion:'desc'},limit:1},(err,user)=>{
         
