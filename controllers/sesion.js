@@ -60,8 +60,8 @@ function registerSesion(req,res){
             sesion.totalFlex=req.body.totalFlex
             sesion.score=req.body.score
             sesion.gameId=req.body.gameId
-    //
-    Sesion.find({"user":o_id},null,{sort:{nSesion:'desc'},limit:1},(err,user)=>{
+    //buscara por user id y gameId,ya que se debe crear la sesion segun esos dos parametros, se ordena y se trae al mayor
+    Sesion.find({"user":o_id,"gameId":req.body.gameId},null,{sort:{nSesion:'desc'},limit:1},(err,user)=>{
         
         if(err) res.status(500).send({message:`Error al hacer la solicitud: ${err}`})
         //si trae ningun usuario significa que no tiene sesiones,object vacio
