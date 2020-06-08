@@ -9,9 +9,10 @@ const app = express();
 const api=require('./routes')
 
 
-//admitir cuerpos de mensaje en formato json(middleware)
-app.use(bodyParser.urlencoded({extended:false}))
+// Middlewares
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json())
+
 //la ruta api use el modulo api de routes
 app.use('/api',api)
 
